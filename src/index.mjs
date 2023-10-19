@@ -36,7 +36,11 @@ const onClickAdd = () => {
   btnDelete.innerText = "削除";
   // 削除ボタンが押されたら
   btnDelete.addEventListener("click", () => {
-    alert("削除されました");
+    // alert("削除されました");
+    // 削除ボタンが押されたら<li class="incomplete-item">のタグを削除
+    const deleteTaret = btnDelete.closest("li");
+    // console.log(deleteTaret);
+    document.getElementById("incomplete-list").removeChild(deleteTaret);
   });
 
   // 入れ子にする。親にappendChildする。同じ親なら同じ子になる。
