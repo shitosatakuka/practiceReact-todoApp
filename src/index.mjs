@@ -24,8 +24,17 @@ const onClickAdd = () => {
   p.innerText = inputText;
   // console.log(p);
 
-  // 入れ子にする
+  // button(完了)タグ生成
+  const btnComplete = document.createElement("button");
+  btnComplete.innerText = "完了";
+  // button(削除)タグ生成
+  const btnDelete = document.createElement("button");
+  btnDelete.innerText = "削除";
+
+  // 入れ子にする。親にappendChildする。同じ親なら同じ子になる。
   li.appendChild(div).appendChild(p);
+  div.appendChild(btnComplete);
+  div.appendChild(btnDelete);
 
   // 未完了リストに追加
   document.getElementById("incomplete-list").appendChild(li);
