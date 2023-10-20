@@ -9,6 +9,21 @@ const onClickAdd = () => {
   document.getElementById("add-text").value = "";
   // alert(inputText);
 
+  createIncompleteList(inputText);
+};
+
+// 未完了リストから指定の要素を削除する関数
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("incomplete-list").removeChild(target);
+};
+
+// 完了リストから指定の要素を削除する関数
+const deleteFromCompleteList = (target) => {
+  document.getElementById("complete-list").removeChild(target);
+};
+
+// 未完了に追加する関数
+const createIncompleteList = (textMemo) => {
   // liタグの生成
   const li = document.createElement("li");
   li.className = "incomplete-item";
@@ -21,7 +36,7 @@ const onClickAdd = () => {
 
   // pタグの生成
   const p = document.createElement("p");
-  p.innerText = inputText;
+  p.innerText = textMemo;
   // console.log(p);
 
   // button(完了)タグ生成
@@ -42,7 +57,7 @@ const onClickAdd = () => {
     const addTarget = btnComplete.parentNode;
     // TODO内容テキストを取得
     const textMemo = addTarget.firstElementChild.innerText;
-    console.log(textMemo);
+    // console.log(textMemo);
 
     // div以下を初期化
     addTarget.textContent = null;
@@ -56,12 +71,23 @@ const onClickAdd = () => {
     // pタグの生成
     const p = document.createElement("p");
     p.innerText = textMemo;
-    console.log(p);
+    // console.log(p);
     // // divタグの中にtextMemoを追加
 
     // button(戻る)タグ生成
     const btnBack = document.createElement("button");
     btnBack.innerText = "戻す";
+
+    btnBack.addEventListener("click", () => {
+      // alert(btnBack);
+      const deleteTarget = btnBack.closest("li");
+      document.getElementById("complete-list").removeChild(deleteTarget);
+
+      // テキストを取得
+      const textMemo = btnBack.parentNode.firstElementChild.innerText;
+      // console.log(textMemo);
+      createIncompleteList(textMemo);
+    });
 
     // liタグの子要素に設定する。
     li.appendChild(addTarget);
@@ -96,10 +122,6 @@ const onClickAdd = () => {
   document.getElementById("incomplete-list").appendChild(li);
 };
 
-// 未完了リストから指定の要素を削除する関数
-const deleteFromIncompleteList = (target) => {
-  document.getElementById("incomplete-list").removeChild(target);
-};
 // idを取得して、クリックのイベントが発生したらonClickAddの関数が実行される。
 document
   .getElementById("add-button")

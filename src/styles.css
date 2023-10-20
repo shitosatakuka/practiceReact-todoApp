@@ -19,6 +19,11 @@ button:hover {
   color: #ffffff;
   cursor: pointer;
 }
+li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+}
 
 li p {
   margin-right: 8px;
